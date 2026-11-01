@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>World Plug Map</title>
+  <meta name="description" content="Interactive world map showing which electrical plug types each country uses.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Ccircle cx='24' cy='24' r='20' fill='%232f6fde'/%3E%3Ccircle cx='15' cy='24' r='3.5' fill='white'/%3E%3Ccircle cx='33' cy='24' r='3.5' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>World Plug Map</h1>
+    <p class="hint-mouse">Hover over a country to see which power plugs it uses. Click for details.</p>
+    <p class="hint-touch">Tap a country to see which power plugs it uses.</p>
+  </header>
+
+  <main class="layout">
+    <aside class="panel">
+      <label class="search">
+        <span class="visually-hidden">Search countries</span>
+        <input id="search" type="search" placeholder="Search countries…" autocomplete="off" spellcheck="false">
+      </label>
+      <div class="filter-label">Filter by plug type</div>
+      <div id="type-filter" class="chips" role="group" aria-label="Filter by plug type"></div>
+      <div class="list-meta">
+        <span id="count"></span>
+        <button id="clear-filters" class="link-btn" hidden>Clear filters</button>
+      </div>
+      <ul id="country-list" class="country-list"></ul>
+    </aside>
+
+    <section class="map-area">
+      <div class="map-wrap" id="map-wrap">
+        <svg id="map" viewBox="0 0 960 500" preserveAspectRatio="xMidYMid meet" role="img" aria-label="World map of plug types"></svg>
+        <div id="loading" class="loading">Loading map…</div>
+        <div id="tooltip" class="tooltip" hidden></div>
+        <div class="map-controls">
+          <button id="zoom-in" title="Zoom in" aria-label="Zoom in">+</button>
+          <button id="zoom-out" title="Zoom out" aria-label="Zoom out">−</button>
+          <button id="zoom-reset" title="Reset view" aria-label="Reset view">⤢</button>
+        </div>
+      </div>
+      <div id="details" class="details" hidden></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    Plug data compiled from IEC World Plugs and WorldStandards. Many countries have mixed sockets, so check before you travel.
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+  <script src="data.js"></script>
+  <script src="plugs.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
